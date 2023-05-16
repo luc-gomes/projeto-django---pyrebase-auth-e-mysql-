@@ -1,0 +1,40 @@
+{% extends 'main_firebase/main.html' %}
+{% load static %}
+{% block title %}login{% endblock%}
+{% block content1 %}
+
+{% if message %}
+<script>
+	alert('{{ message }}');
+</script>
+{% endif %}
+<div id = "login", name = "login" class = "login">
+	<div class = "row align-items-center ">
+		<div class= "col" >
+			<img src="{% static "/img/svg/logo.svg" %}" align="center" />
+		</div>
+
+		<div class= "col" >
+
+<form action="/postsignIn/" method="post">
+	{% csrf_token %}
+	<br/>
+<!-- Enter Your Email: -->
+	<label for="Email">Email</label>
+	<input type="email"id="Email" name="email"><br><br>
+<!-- Enter Your Password: -->
+	<label for="Password">Password</label>
+	<input type="password" id="Password" name="pass"><br><br>
+	<input type="submit" value="SignIn"><br><br>
+	<p ">Forgot Password? <a href="reset/" ">Click Here to Reset</a></p>
+
+
+	<label>
+	<input type="checkbox" checked="checked" name="remember"> Remember me
+	</label>
+	<button type="button" onclick="location.href='signUp/' ">SignUp</button>
+
+    <button type="submit" onclick="signUp">SignUp</button> 
+</form>
+</div>
+{% endblock %}

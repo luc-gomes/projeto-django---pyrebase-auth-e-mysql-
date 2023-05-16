@@ -1,0 +1,27 @@
+#criar ambiente virtual
+
+virtualenv <nome>
+
+
+# ativar ambiente virtual
+
+source evvdj/bin/activate
+
+pip install requeriments.txt
+
+#------
+
+django
+django-admin
+pyrebase
+django-bootstrap-v5 
+
+#------
+
+
+# criar projeto em django
+
+django-admin startproject my-site
+django-admin startproject my-site
+python3 manage.py migrate
+

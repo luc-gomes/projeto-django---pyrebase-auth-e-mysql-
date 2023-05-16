@@ -1,0 +1,38 @@
+{% extends 'main_firebase/main.html' %}
+{% load static %}
+{% block title %}home{% endblock%}
+{% block content1 %}
+<!--{"autor": autor, "titulo":titulo, "subtitulo":subtitulo, "sinopse":sinopse, "projeto":projeto }-->
+<div class="row">
+<button type="button" onclick="location.href='logout/'">Logout</button>
+</div>
+
+<div class "col">
+    <H1>
+        Project Name is {{ projeto }}
+            </H1>
+        <br/>
+        <h2>
+        titulo da historia é :is {{ titulo }}
+            </h2>
+        <br>
+        <h2>
+            subtitulo da historia é :is {{ subtitulo }}
+                </h2>
+        <h3>
+            sinopse: {{ sinopse }}
+            </h3>
+        <br>
+
+</div>
+
+<div class "col">
+
+    <ul>
+{% for projet in projeto %}
+    <li>{{projet.titulo}}</li>
+{% endfor %}
+</ul>
+</div>
+
+{% endblock %}
