@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from pyrebase import pyrebase
+import pyrebase
 
 config={
   "apiKey": "AIzaSyAGlpseoXh8z8wVzomazZWn_24ILhymtWU",
@@ -18,23 +18,31 @@ config={
 firebase=pyrebase.initialize_app(config)
  
 authe = firebase.auth()
+
 database=firebase.database()
 
 def signIn(request):
 	return render(request,"main_firebase/Login.html")
 
-def home(request):
+def home(request, data):
 	#projeto = database.child('Historias').stream()
 	#projeto = database.child('Historias').child('Historia').get().val()
 	#projeto = database.child('Historias').child('Historia').get().val().keys()
 	#projeto = database.child('conteudo').where('visible' == True).stream()
 	#projeto = database.child('Historias').child('pqXQUtihItQLqA1dukYk').get().val()
-	titulo    = database.child('conteudo').child('conteudo_dicertado').get().val()
+	#titulo    = database.child('conteudo').child('conteudo_dicertado').get().val()
     #subtitulo = database.child('Historias').child('subtitulo').get().val()
-	sinopse   = database.child('conteudo').child('nome').get().val()
-	autor     = database.child('conteudo').child('subtitulo').get().val()
+	#sinopse   = database.child('conteudo').child('nome').get().val()
+	#autor     = database.child('conteudo').child('subtitulo').get().val()
 
-	return render(request,"main_firebase/Home.html",{"autor": autor, "titulo":titulo,  "sinopse":sinopse, "projeto":projeto })
+	#return render(request,"main_firebase/Home.html",{"autor": autor, "titulo":titulo,  "sinopse":sinopse, "projeto":projeto })
+
+	#projeto = database.child('Historias').stream()
+
+	#print (projeto)
+
+	return render(request,"main_firebase/Home.html",)
+
 
 
 
@@ -48,12 +56,25 @@ def postsignIn(request):
 	try:
 		# tentar entrar no auth com email e password
 		user=authe.sign_in_with_email_and_password(email,pasw)
+
+		#projeto = database.child('Historias').child('Historia').get()
+		#data = database.child("Historias").get(user['idToken'])
+
+
+		todasAShistorias = database.child("Historias").get(user['idToken'])
+
+
+		
 	except:
 		message="Credenciais invalidas, verifique os dados de entrada"
 		return render(request,"Login.html",{"message":message})
 	session_id=user['idToken']
 	request.session['uid'] = str(session_id)
-	return render(request,"main_firebase/Home.html",{"email":email})
+
+	dados= {"email":email, "data": todasAShistorias}
+
+
+	return render(request,"main_firebase/Home.html",dados)
 
 def logout(request):
 	try:
@@ -77,7 +98,7 @@ def postsignUp(request):
 		print(uid)
 	except:
 		return render(request, "main_firebase/Registration.html")
-	return render(request,"main_firebase/Login.html")
+	return render(request,"main_firebase/main.html")
 
 def reset(request):
 	return render(request, "main_firebase/Reset.html")
