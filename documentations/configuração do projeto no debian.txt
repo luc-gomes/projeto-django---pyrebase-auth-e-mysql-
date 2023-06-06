@@ -1,0 +1,43 @@
+links de referencia
+
+https://pypi.org/project/mysqlclient/
+
+
+instalar mysql - linux deb - (generico): DPKG + SNAPD INSTALADO...
+
+wget https://repo.mysql.com//mysql-apt-config_0.8.22-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
+sudo apt install mysql-server
+apt-cache search mysql-server
+sudo apt install mysql-community-server -f
+sudo apt-get install software-properties-common dirmngr apt-transport-https
+sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+sudo add-apt-repository 'deb [arch=amd64] https://espejito.fder.edu.uy/mariadb/repo/10.5/debian buster main'
+sudo apt-get install mariadb-server -y
+sudo mysql_secure_installation
+sudo snap install mysql-workbench-community
+
+
+Dependencias a nivel de sistema:
+
+sudo apt-get install python3-pip python3-dev default-libmysqlclient-dev build-essential python3-mysqldb python3-mysqldb-dbg
+
+python:
+
+python3 -m pip install virtualenv
+
+
+Na pasta anterior a pasta raiz do projeto:
+
+crie sua virtualenv
+
+virtualenv <nome_virtualenv>
+source <nome_virtualenv>/vin/activate
+cd <nome_da_pasta_raiz_do_projeto>
+
+https://learnpython.com/blog/python-requirements-file/
+
+python3 -m  pip install -r requirements.txt
+
+------------------------------------------------------------------------------------------------------------
+

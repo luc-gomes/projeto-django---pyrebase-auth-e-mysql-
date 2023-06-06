@@ -1,6 +1,8 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+import main_firebase.models
 import pyrebase
-
+from django.db import connection
 config={
   "apiKey": "AIzaSyAGlpseoXh8z8wVzomazZWn_24ILhymtWU",
   "authDomain": "biblioteca-s.firebaseapp.com",
@@ -11,70 +13,39 @@ config={
   "appId": "1:174158602420:web:71cad95b89d480fec5f7e1",
   "measurementId": "G-PKZJMBSS5J"
 }
-
+#https://www.youtube.com/watch?v=bq0AszeDZf4
 # Initialising database,auth and firebase for further use
-
-
 firebase=pyrebase.initialize_app(config)
- 
 authe = firebase.auth()
-
 database=firebase.database()
-
 def signIn(request):
 	return render(request,"main_firebase/Login.html")
-
-def home(request, data):
-	#projeto = database.child('Historias').stream()
-	#projeto = database.child('Historias').child('Historia').get().val()
-	#projeto = database.child('Historias').child('Historia').get().val().keys()
-	#projeto = database.child('conteudo').where('visible' == True).stream()
-	#projeto = database.child('Historias').child('pqXQUtihItQLqA1dukYk').get().val()
-	#titulo    = database.child('conteudo').child('conteudo_dicertado').get().val()
-    #subtitulo = database.child('Historias').child('subtitulo').get().val()
-	#sinopse   = database.child('conteudo').child('nome').get().val()
-	#autor     = database.child('conteudo').child('subtitulo').get().val()
-
-	#return render(request,"main_firebase/Home.html",{"autor": autor, "titulo":titulo,  "sinopse":sinopse, "projeto":projeto })
-
-	#projeto = database.child('Historias').stream()
-
-	#print (projeto)
-
-	return render(request,"main_firebase/Home.html",)
-
-
-
-
-
+def home(request ):
+	#conteudo =SearchConteudos.objects.all()
+	cursor = connection.cursor()
+	cursor.execute("SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor;")
+	conteudo = cursor.fetchall()	
+	return render(request,"main_firebase/Home.html",{"conteudo": conteudo})
 def Main(request):
 	return render(request,"main_firebase/main.html")
-
+       
 def postsignIn(request):
 	email=request.POST.get('email')
 	pasw=request.POST.get('pass')
 	try:
-		# tentar entrar no auth com email e password
 		user=authe.sign_in_with_email_and_password(email,pasw)
-
-		#projeto = database.child('Historias').child('Historia').get()
-		#data = database.child("Historias").get(user['idToken'])
-
-
-		todasAShistorias = database.child("Historias").get(user['idToken'])
-
-
-		
-	except:
+		#uid = user['localId']
+		cursor = connection.cursor()
+		cursor.execute("SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor;")
+		conteudo = cursor.fetchall()	
+	except:	
 		message="Credenciais invalidas, verifique os dados de entrada"
-		return render(request,"Login.html",{"message":message})
+	
+		return render(request,"main_firebase/Login.html",{"message":message, "conteudo":conteudo})
 	session_id=user['idToken']
 	request.session['uid'] = str(session_id)
-
-	dados= {"email":email, "data": todasAShistorias}
-
-
-	return render(request,"main_firebase/Home.html",dados)
+	#dados= {"email":email}
+	return render(request,"main_data/homepage_admin.html",{"conteudo": conteudo,"email":email})
 
 def logout(request):
 	try:
@@ -84,6 +55,7 @@ def logout(request):
 	return render(request,"main_firebase/Login.html")
 
 def signUp(request):
+	#return HttpResponseRedirect("main_firebase/Registration.html")
 	return render(request,"main_firebase/Registration.html")
 
 def postsignUp(request):
@@ -107,12 +79,31 @@ def postReset(request):
 	email = request.POST.get('email')
 	try:
 		authe.send_password_reset_email(email)
-		message = "SEU EMAIL FOI REVISADO COM SUCESSO!"
+		message = "Seu email foi revisado com sucesso"
 		return render(request, "main_firebase/Reset.html", {"msg":message})
 	except:
 		message = "Verifique seu Email:, nele haverá um link de confirmação"
 		return render(request, "main_firebase/Reset.html", {"msg":message})
-#---------------------------------------------------------------------------------------------------------------------------------------------------
-#
-#
-#---------------------------------------------------------------------------------------------------------------------------------------------------
+
+def Create(request):
+	return render(request, "main_data/create.html")
+
+def PostCreate(request):
+	titulo = request.POST.get('txtTitulo')
+	subtitulo = request.POST.get('txtSubTitulo')
+	autor = request.POST.get('txtAutor')
+	texto = request.POST.get('txtTexto')
+
+	data = {
+			"titulo": titulo,
+			"subtitulo":subtitulo,
+			"autor": autor,
+			"texto": texto,
+	}
+	return render(request, "main_data/homepage_admin.html")
+
+def Home_page_admin (request):
+	conteudo =SearchConteudos.objects.all()
+	return render(request,"main_firebase/Home.html",{"conteudo":conteudo})
+
+#----------------------------------------------------------------------------

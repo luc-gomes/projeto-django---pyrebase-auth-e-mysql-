@@ -7,21 +7,37 @@ virtualenv <nome>
 
 source evvdj/bin/activate
 
-pip install requeriments.txt
+python3 -r pip install requeriments.txt
 
 #------
 
+wrapers: https://acervolima.com/wrappers-de-funcao-em-python/
+
+#------
 django
 django-admin
 pyrebase
+pyrebase4 #https://github.com/nhorvath/Pyrebase4
 django-bootstrap-v5 
+pymysqlclient
 
 #------
+
+
+
+
+
 
 
 # criar projeto em django
 
 django-admin startproject my-site
 django-admin startproject my-site
-python3 manage.py migrate
+python3 -m manage.py migrate
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------
+
+limitações pyrebase e pyrebase4
+
+https://stackoverflow.com/questions/39098190/firebase-limited-and-secure-service-access-from-pyrebase
 

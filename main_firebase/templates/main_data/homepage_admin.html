@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %}Home{% endblock%}
 {% block content1 %}
-
 {% if message %}
 <script>
 	alert('{{ message }}');
@@ -24,17 +23,17 @@
     </form>
 
 </div>
-{% endif %}
 <div class="tm-container">
     <div class="tm-main-content">
         <section class="tm-section tm-section-small text-center">
             {% for data in conteudo %}
-                <h1>autor: {{data.3}} {{data.4}}</h1>
-                <h2>titulo: {{data.0}}</h2>
-                <h3>Subtitulo: {{data.1}}</h3>
+            <h1>autor: {{data.3}} {{data.4}}</h1>
+            <h2>titulo: {{data.0}}</h2>
+            <h3>Subtitulo: {{data.1}}</h3>
 
-                <hr>
-            {% endfor %}
+            <hr>
+        {% endfor %}
             </section>
 </div>
+{% endif %}
 {% endblock %}

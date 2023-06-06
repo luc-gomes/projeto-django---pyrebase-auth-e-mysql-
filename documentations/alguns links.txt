@@ -1,0 +1,20 @@
+mysql e python:
+
+https://www.w3schools.com/python/python_mysql_create_table.asp
+https://www.freecodecamp.org/portuguese/news/como-criar-e-manipular-bancos-de-dados-sql-com-python/
+https://www.treinaweb.com.br/blog/mapeando-banco-de-dados-existente-com-django
+
+
+pyrebase e firebase:
+
+https://github.com/nhorvath/Pyrebase4
+https://firebase.google.com/docs/database/security/indexing-data?hl=pt-br
+
+
+firebse api:
+
+https://firebase.google.com/docs/database/admin/retrieve-data?hl=pt-br#python
+pyrebase error non authorized 401
+
+https://stackoverflow.com/questions/57711700/trigger-cloud-function-based-on-firestore-changes
+

@@ -1,0 +1,31 @@
+{% extends 'main_firebase/main.html' %}
+{% load static %}
+{% block title %}login{% endblock%}
+{% block content1 %}
+
+{% if message %}
+<script>
+	alert('{{ message }}');
+</script>
+{% endif %}
+<div id = "div_user", name = "div_user" class = "col">
+	<strong>Seja bem vindo: : {{email}}   
+	<button type="button" onclick="location.href='Create/' ">Criar publicação</button>
+	<button type="submit" onclick="'/Create/'">SignUp</button> 
+	<button type="button" onclick="location.href='signUp/' ">vazio </button>
+	<button type="button" onclick="location.href='signUp/' ">vazio</button>
+	<button type="button" onclick="location.href='signUp/' ">vazio</button>
+
+</div>
+
+<div id = "content2", name = "content2", class = "main center" ><!-- body content-->
+	<div class= "row justify-content-sm-center">
+	  <div class="col-11">
+
+		{% block content2 %}
+		{% endblock %}
+
+	  </div>
+	</div>
+
+{% endblock %}
