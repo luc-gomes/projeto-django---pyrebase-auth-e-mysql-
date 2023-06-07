@@ -1,11 +1,6 @@
 projeto django
+usando firebase para authenticação e mysql para dados de texto.
 
 para rodar instalar bibliotecas em requeriments.txt
 
-pip install requeriments.txt
-
-pyrebase authe
-
-importação de bibliotecas-s2
-
-e static configurado
+para instruçoes detalhdas navegue até a pasta Documentos.
