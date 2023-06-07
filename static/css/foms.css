@@ -1,21 +1,25 @@
-#content1{
-    background-color: #ced1d6;
+
+div#conteudo_feed{
+  background-color: DodgerBlue;
+
+  padding: 5px 5px 5px 5px;  
+
+
+
 }
-
-
 button{
     background-color: rgba(255, 255, 255, 0.753);
     color: rgb(0, 0, 0);
-    width: 150px;
-    height: 30px;
+    width: 200px;
+    height: 60px;
     border: none;
     border-radius: 5px;
 }
 
 input{
     margin-top:20px;
-    height: 30px;
-    width: 150px;
+    height: 60px;
+    width: 200px;
     border-radius: 5px;
     
 }
@@ -25,14 +29,7 @@ input[type="submit"]{
     border: none;
     border-radius: 5px;
 }
-.form-check-label {
-    color: rgb(251, 255, 0);
-    padding: 1px;
-  }
-  a:link {
-    color: yellow;
-  }
 
-  .footer-geral{
-    background-color: #0061c2;
-  }
+a:link {
+    color: yellow;
+}

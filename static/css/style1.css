@@ -1,0 +1,24 @@
+main{
+    margin-left:0px;
+    padding: 85px 0px;
+    background-color:rgb(56, 56, 56)
+}
+
+
+a:link, a:visited {
+    color: white;
+    padding: 4px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+.sidebar hover{
+    opacity:1;
+    border-left: 10px solid	darksalmon;
+    color: white;
+
+}
+
+
+

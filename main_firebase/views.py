@@ -23,7 +23,7 @@ def signIn(request):
 def home(request ):
 	#conteudo =SearchConteudos.objects.all()
 	cursor = connection.cursor()
-	cursor.execute("SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor;")
+	cursor.execute("SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor where c.visibilidade = 1 order by a.nome;")
 	conteudo = cursor.fetchall()	
 	return render(request,"main_firebase/Home.html",{"conteudo": conteudo})
 def Main(request):
@@ -103,7 +103,10 @@ def PostCreate(request):
 	return render(request, "main_data/homepage_admin.html")
 
 def Home_page_admin (request):
-	conteudo =SearchConteudos.objects.all()
+	
+	cursor = connection.cursor()
+	cursor.execute("SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor;")
+	conteudo = cursor.fetchall()	
 	return render(request,"main_firebase/Home.html",{"conteudo":conteudo})
 
 #----------------------------------------------------------------------------

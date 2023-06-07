@@ -13,6 +13,7 @@ class SearchAutores(models.Model):
     class Meta:
         db_table = "autores"
 
+
 class SearchConteudos(models.Model):
     codigo_pb = models.CharField(max_length=255, primary_key=True)
     titulo = models.CharField(max_length=255)

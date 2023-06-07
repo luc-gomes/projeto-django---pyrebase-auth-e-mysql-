@@ -25,13 +25,15 @@
 
 </div>
 {% endif %}
-<div class="tm-container">
-    <div class="tm-main-content">
-        <section class="tm-section tm-section-small text-center">
+<div class="col">
+    <div class="md-4 col-sm-9 ">
+        <section class="t center m-section  text-center">
             {% for data in conteudo %}
-                <h1>autor: {{data.3}} {{data.4}}</h1>
                 <h2>titulo: {{data.0}}</h2>
                 <h3>Subtitulo: {{data.1}}</h3>
+                <img src="{% static "/img/svg/logo.svg" %}" width="150px" />
+                <h4>autor: {{data.3}} {{data.4}}</h4>
+                
 
                 <hr>
             {% endfor %}

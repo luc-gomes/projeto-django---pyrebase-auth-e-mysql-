@@ -9,7 +9,7 @@
 		</div>
 
 <div class= "col" >
-<form action="postsignUp/" method="post">
+<form action="../postsignUp/" method="post">
 	{% csrf_token %}
 	<br/>
 	<h1>Sign Up</h1>
@@ -31,10 +31,10 @@
 	<label for="confirm_password">Confirm Password:</label>
 	<input type="password" id="confirm_password" name="pass-repeat" placeholder=" Repeat Password"><br><br>
 	<label>
-	<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+	<input type="checkbox" checked="checked" name="remember" style="margin-bottom:0px">lembrar
 	</label>
-	
-	<input type="submit" value="SignUp"><br><br>
+	<br><br><br><br>
+	<input type="submit" value="Cadastrar" >
 
 </form>
 </div>

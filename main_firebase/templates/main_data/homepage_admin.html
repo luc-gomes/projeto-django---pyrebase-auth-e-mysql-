@@ -10,12 +10,10 @@
 {% if email %}
 <div id = "div_user", name = "div_user" class = "col">
 	<strong>Seja bem vindo: : {{email}}   
-	<button type="button" onclick="location.href='Create/' ">Criar publicação</button>
-	<button type="submit" onclick="'/Create/'">SignUp</button> 
+	<button type="button" onclick="location.href='../Create/' ">Criar publicação</button>
+	<button type="submit" onclick="'../Create/'">SignUp</button> 
 	<button type="button" onclick="location.href='signUp/' ">vazio </button>
-	<button type="button" onclick="location.href='signUp/' ">vazio</button>
-	<button type="button" onclick="location.href='signUp/' ">vazio</button>
-	<button type="button" onclick="location.href='logout/' ">Logout</button>
+	<button type="button" onclick="location.href='../logout/' ">Logout</button>
     <form class="d-flex" role="search" method="post" action="/searchcontent/">
         {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -24,7 +22,7 @@
 
 </div>
 <div class="tm-container">
-    <div class="tm-main-content">
+    <div id ="conteudo_feed"  class="tm-main-content">
         <section class="tm-section tm-section-small text-center">
             {% for data in conteudo %}
             <h1>autor: {{data.3}} {{data.4}}</h1>
