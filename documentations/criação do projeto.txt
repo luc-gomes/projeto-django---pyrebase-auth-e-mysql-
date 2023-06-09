@@ -9,6 +9,8 @@ source evvdj/bin/activate
 
 python3 -r pip install requeriments.txt
 
+python3 -m  pip install -r requirements.txt
+
 #------
 
 wrapers: https://acervolima.com/wrappers-de-funcao-em-python/

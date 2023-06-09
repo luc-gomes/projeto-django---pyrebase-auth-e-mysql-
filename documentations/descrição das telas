@@ -3,8 +3,5 @@ tela inicial
 tela_login
 tela de cadastro
 tela resetar conta
-tela logado?
-
-sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
-
-sudo pip install mysqlclient
+tela logado? (tela admin)
+*tela cadastrar conteudo

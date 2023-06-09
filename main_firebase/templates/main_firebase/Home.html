@@ -26,7 +26,7 @@
 </div>
 {% endif %}
 <div class="col">
-    <div class="md-4 col-sm-9 ">
+    <div id ="conteudo_feed" class="tm-main-content">
         <section class="t center m-section  text-center">
             {% for data in conteudo %}
                 <h2>titulo: {{data.0}}</h2>
@@ -38,5 +38,6 @@
                 <hr>
             {% endfor %}
             </section>
+    </div>        
 </div>
 {% endblock %}

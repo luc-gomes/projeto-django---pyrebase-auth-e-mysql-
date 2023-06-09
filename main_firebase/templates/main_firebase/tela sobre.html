@@ -1,0 +1,36 @@
+{% extends 'main_firebase/main.html' %}
+{% load static %}
+{% block title %}Sobre{% endblock%}
+{% block content1 %}
+
+<strong> Seja bem vindo ao meu site:</strong>
+
+<!--
+    Sobre:   que   apresente   dados   do   projeto   {tema   escolhido   e   objetivo}   e   dos
+desenvolvedores: {nome completo e código de matrícula}.
+-->
+<p>Por Lucas Gomes da Silva aluno da fatecrp 2840481821020</p>
+<hr>
+<img src="{% static "/img/svg/logo.svg" %}" width="300px" />
+<p>Este é um projeto desenvolvido utilizando djago 4.2 com as bibiliotecas presentes na tabela 1: bibliotecas do projeto.</p>
+<p>Este projeto usa um serviço de autenticação do firebase chamado Firebase Authenticator para validar usuarios, para isso é usada a biblioteca pip pyrebase.</p>
+<p>Para manter os dados persistentes no banco de dados é usado o SGBD Mysql conectado segundo o arquivo settings.py</p>
+<p>Este aplicativo cadaStra usuarios reseta a conta em caso de "esqueci a senha" exibe interface de admin para usuarios authenticados e fornece uma listagem de conteudo do banco para rodar o aplicativo connectado ao database com os dados persistentes.</p>
+<hr>
+<div class="col">
+    <div id ="conteudo_feed" class="tm-main-content">
+        <section class="t center m-section  text-center">
+            
+            <table border="2px">
+                {% for data in lista %}
+                <tr>
+                    <td>{{lista.data}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+                <hr>
+            </section>
+    </div>        
+</div>
+
+{% endblock %}

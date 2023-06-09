@@ -110,3 +110,13 @@ def Home_page_admin (request):
 	return render(request,"main_firebase/Home.html",{"conteudo":conteudo})
 
 #----------------------------------------------------------------------------
+def Tela_sobre (request):
+	f= open("/home/lucas/Documentos/django/mysite_firebase com serch/mysite_firebase 22may231945/mysite_firebase/mysite/requirements.txt", "r")
+	print(f.read())
+	lista = []
+	for i in f:
+		lista.append(f[i])
+
+	f.close()
+	print(lista)
+	return render(request,"main_firebase/tela sobre.html",{"lista": lista})
