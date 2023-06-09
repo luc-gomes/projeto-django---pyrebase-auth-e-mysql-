@@ -16,7 +16,7 @@
 	<button type="button" onclick="location.href='../logout/' ">Logout</button>
     <form class="d-flex" role="search" method="post" action="/searchcontent/">
         {% csrf_token %}
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="pesquisa">
         <button class="btn btn-outline-success" type="submit" value = "Find">Search</button>
     </form>
 

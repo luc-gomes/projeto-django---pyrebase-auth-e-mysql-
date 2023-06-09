@@ -20,6 +20,6 @@ urlpatterns = [
     #when we are moving to search then move to this url
     #path('search/', views.search),
     #showing search detail on this url
-    #path('searchcontent/', views.searchcontent), 
+    path('searchcontent/', views.searchcontent), 
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

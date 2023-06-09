@@ -120,3 +120,11 @@ def Tela_sobre (request):
 	f.close()
 	print(lista)
 	return render(request,"main_firebase/tela sobre.html",{"lista": lista})
+
+
+def searchcontent(request):
+	
+	cursor = connection.cursor()
+	cursor.execute(f"SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor where c.visibilidade = 1 and  lower(titulo) like '%{request.POST.get('pesquisa')}%';")
+	conteudo = cursor.fetchall()	
+	return render(request, "main_firebase/search.html",{"conteudo":conteudo})
