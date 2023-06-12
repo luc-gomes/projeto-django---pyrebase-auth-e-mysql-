@@ -7,11 +7,10 @@
 	alert('{{ message }}');
 </script>
 {% endif %}
-<form action="../PostCreate/" method="post">
+<form action="../Post_autor/" method="post">
 	{% csrf_token %}
 <br/>
 <td><label for="district"><strong>Autor</strong></label></td><br><br><hr>
-
 <!-- Enter Your Titulo da publicação: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input -->
 <label for="Email">nome</label>
 <input type="text"id="txtNome_autor" name="txtNome_autor"><br><br>
@@ -22,9 +21,8 @@
 <label for="text">email</label>
 <input type="email"id="txtEmail_Autor" name="txtEmail_Autor"><br><br>
 <!--<textarea id="txtTexto" rows="10" cols="70" name="txtTexto"> </ textarea>-->
-<p><input type="checkbox" checked="checked" name="checkVisibilidade"><strong>Visivel?</strong></p>	
 <br><hr>
-<button type="submit" onclick="PostCreate">Add Historia</button> 
+<button type="submit" onclick="Post_autor">Add Autor</button> 
 </form>
 <button type="button" onclick="location.href='../Create/' ">Cancelar</button>
 </div>

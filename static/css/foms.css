@@ -1,13 +1,13 @@
 
 div#conteudo_feed{
-  background-color: RGB(247, 202, 201);
+  background-color:  rgba(246, 59, 59, 0.753);
   padding: 10px 10px 10px 10px; 
 }
 div#content1{
-    background-color: RGB(247, 202, 201);  
+    background-color:  rgba(202, 202, 202, 0.753);
 }
 button{
-    background-color: rgba(213, 163, 163, 0.753);
+    background-color: rgba(246, 127, 59, 0.753);
     color: rgb(0, 0, 0);
     width: 200px;
     height: 60px;
