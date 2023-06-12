@@ -17,14 +17,15 @@
 	<button type="button" onclick="location.href='signUp/' ">vazio</button>
 	<button type="button" onclick="location.href='signUp/' ">vazio</button>
 	<button type="button" onclick="location.href='logout/' ">Logout</button>
-    <form class="d-flex" role="search" method="post" action="/searchcontent/">
-        {% csrf_token %}
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" value = "Find">Search</button>
-    </form>
 
 </div>
 {% endif %}
+<form class="d-flex" role="search" method="post" action="../searchcontent/">
+    {% csrf_token %}
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="pesquisa">
+    <button class="btn btn-outline-success" type="submit" value = "Find">Search</button>
+</form>
+
 <div class="col">
     <div id ="conteudo_feed" class="tm-main-content">
         <section class="t center m-section  text-center">

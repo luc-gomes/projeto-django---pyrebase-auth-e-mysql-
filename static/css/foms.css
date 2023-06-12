@@ -3,7 +3,6 @@ div#conteudo_feed{
   background-color: RGB(247, 202, 201);
   padding: 10px 10px 10px 10px; 
 }
-
 div#content1{
     background-color: RGB(247, 202, 201);  
 }
@@ -16,7 +15,6 @@ button{
     border-color: black;
     border-radius: 15px;
 }
-
 input{
     margin-top:20px;
     height: 60px;

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-import main_firebase.models
+from main_firebase.models import SearchAutores
 import pyrebase
 from django.db import connection
 config={
@@ -18,20 +18,24 @@ config={
 firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
 database=firebase.database()
+
 def signIn(request):
 	return render(request,"main_firebase/Login.html")
+
 def home(request ):
 	#conteudo =SearchConteudos.objects.all()
 	cursor = connection.cursor()
 	cursor.execute("SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor where c.visibilidade = 1 order by a.nome;")
 	conteudo = cursor.fetchall()	
 	return render(request,"main_firebase/Home.html",{"conteudo": conteudo})
+
 def Main(request):
 	return render(request,"main_firebase/main.html")
        
 def postsignIn(request):
 	email=request.POST.get('email')
 	pasw=request.POST.get('pass')
+
 	try:
 		user=authe.sign_in_with_email_and_password(email,pasw)
 		#uid = user['localId']
@@ -42,9 +46,11 @@ def postsignIn(request):
 		message="Credenciais invalidas, verifique os dados de entrada"
 	
 		return render(request,"main_firebase/Login.html",{"message":message, "conteudo":conteudo})
+	
 	session_id=user['idToken']
 	request.session['uid'] = str(session_id)
 	#dados= {"email":email}
+	
 	return render(request,"main_data/homepage_admin.html",{"conteudo": conteudo,"email":email})
 
 def logout(request):
@@ -85,23 +91,6 @@ def postReset(request):
 		message = "Verifique seu Email:, nele haverá um link de confirmação"
 		return render(request, "main_firebase/Reset.html", {"msg":message})
 
-def Create(request):
-	return render(request, "main_data/create.html")
-
-def PostCreate(request):
-	titulo = request.POST.get('txtTitulo')
-	subtitulo = request.POST.get('txtSubTitulo')
-	autor = request.POST.get('txtAutor')
-	texto = request.POST.get('txtTexto')
-
-	data = {
-			"titulo": titulo,
-			"subtitulo":subtitulo,
-			"autor": autor,
-			"texto": texto,
-	}
-	return render(request, "main_data/homepage_admin.html")
-
 def Home_page_admin (request):
 	
 	cursor = connection.cursor()
@@ -109,18 +98,16 @@ def Home_page_admin (request):
 	conteudo = cursor.fetchall()	
 	return render(request,"main_firebase/Home.html",{"conteudo":conteudo})
 
-#----------------------------------------------------------------------------
 def Tela_sobre (request):
+	
 	f= open("/home/lucas/Documentos/django/mysite_firebase com serch/mysite_firebase 22may231945/mysite_firebase/mysite/requirements.txt", "r")
 	print(f.read())
-	lista = []
+	lista = {}
 	for i in f:
 		lista.append(f[i])
-
 	f.close()
 	print(lista)
 	return render(request,"main_firebase/tela sobre.html",{"lista": lista})
-
 
 def searchcontent(request):
 	
@@ -128,3 +115,58 @@ def searchcontent(request):
 	cursor.execute(f"SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor where c.visibilidade = 1 and  lower(titulo) like '%{request.POST.get('pesquisa')}%';")
 	conteudo = cursor.fetchall()	
 	return render(request, "main_firebase/search.html",{"conteudo":conteudo})
+
+def Create(request):
+	Autor = SearchAutores.objects.all()	
+	return render(request, "main_data/create.html",{"Autor":Autor})
+
+def PostCreate(request):
+	try:
+
+		titulo = request.POST.get('txtTitulo')
+		subtitulo = request.POST.get('txtSubTitulo')
+		autor = request.POST.get('lang_txt')
+		texto = request.POST.get('txtTexto')
+		visivel = request.POST.get('checkVisibilidade')
+
+		cursor = connection.cursor()
+		cursor.execute(f"insert into conteudos(codigo_pb,titulo, subtitulo, texto, visibilidade, codigo_autor) values({titulo},'{subtitulo}','','{texto}', {visivel}, {autor});")
+		conteudo = cursor.fetchall()	
+	
+	except:
+		Autor = SearchAutores.objects.all()	
+		mensagem = 'error'
+		return render(request, "main_data/create.html",{"Autor":Autor})
+
+
+	cursor = connection.cursor()
+	cursor.execute("SELECT c.titulo, c.subtitulo, c.visibilidade, a.nome, a.sobrenome FROM conteudos c INNER JOIN autores a ON c.codigo_autor = a.codigo_autor;")
+	conteudo = cursor.fetchall()	
+	return render(request,"main_firebase/Home.html",{"conteudo":conteudo})
+
+
+def Add_autor(request):
+	Autor = SearchAutores.objects.all()	
+	return render(request, "main_data/add_autor.html",{"Autor":Autor})
+
+
+
+def Post_autor(request):
+
+	try:
+		Autor = SearchAutores.objects.all()	
+		nome = request.POST.get('txtNome_autor')
+		sobrenome = request.POST.get('txtSobrenome_autor')
+		email = request.POST.get('txtEmail_Autor')
+		cursor = connection.cursor()
+		cursor.execute(f"insert into autores (nome, sobrenome, email) values ('{{nome}}','{{sobrenome}}', '{{email}}');")
+		conteudo = cursor.fetchall()
+
+
+	except:
+		message = 'erro'
+		Autor = SearchAutores.objects.all()	
+		return render(request, "main_data/add_autor.html",{"Autor":Autor})
+		
+	return render(request, "main_data/create.html",{"Autor": Autor})
+

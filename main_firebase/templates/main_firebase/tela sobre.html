@@ -22,9 +22,9 @@ desenvolvedores: {nome completo e código de matrícula}.
         <section class="t center m-section  text-center">
             
             <table border="2px">
-                {% for data in lista %}
+                {%for item in lista%}
                 <tr>
-                    <td>{{lista.data}}</td>
+                    <td>{{item}}</td>
                 </tr>
                 {% endfor %}
             </table>

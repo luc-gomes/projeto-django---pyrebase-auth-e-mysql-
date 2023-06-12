@@ -2,18 +2,15 @@
 {% load static %}
 {% block title %}login{% endblock%}
 {% block content1 %}
-
 {% if message %}
 <script>
 	alert('{{ message }}');
 </script>
 {% endif %}
-
 <form action="/postsignIn/" method="post">
 	{% csrf_token %}
 <br/>
 <p ">Forgot Password? <a href="login/" ">Como escrever um texto para a plataforma</a></p>
-
 <!-- Enter Your Titulo da publicação: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input -->
 <label for="Email">Titulo</label>
 <input type="text"id="txttitulo" name="txttitulo"><br><br>
@@ -26,11 +23,8 @@
 <!-- Enter Your Texto: -->
 <label for="text">Texto</label>
 <input type="email"id="txtTexto" name="txtTexto"><br><br>
-
 <label><input type="checkbox" checked="checked" name="checkVisibilidade"> Visivel?</label>
-	
 <button type="button" onclick="location.href='signUp/' ">SignUp</button>
-
 <button type="submit" onclick="signUp">SignUp</button> 
 </form>
 </div>

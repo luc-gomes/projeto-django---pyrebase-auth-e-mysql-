@@ -17,9 +17,9 @@ urlpatterns = [
     path('Create/', views.Create),
     path('Home_page_admin/', views.Home_page_admin),
     path('Tela_sobre/', views.Tela_sobre),
-    #when we are moving to search then move to this url
     #path('search/', views.search),
-    #showing search detail on this url
+    path('Add_autor/', views.Add_autor),
+    path('POST_autor/', views.Post_autor),
     path('searchcontent/', views.searchcontent), 
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
