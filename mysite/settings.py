@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'conteudo_site',
 		'USER' : 'root',
-		'PASSWORD' :'ffxrcrgr',
+		'PASSWORD' :'12345678',
 		'HOST' : 'localhost',
         'PORT' : '3306',
         'OPTIONS' : {
