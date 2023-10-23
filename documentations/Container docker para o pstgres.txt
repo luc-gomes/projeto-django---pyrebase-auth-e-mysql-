@@ -1,0 +1,37 @@
+1° instalação do docker na maquina em quastão
+
+2º criação do postgres
+
+docker run --name my-postgres -p 5433:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+
+ senha do postgres postgres
+
+ porta 5432
+
+ localhost do postgres - nome do container
+
+
+ ------------------------------------------------------
+
+ 3º criação do container bridge para comunicação com outra imagem.
+# paraliza tudo
+
+  docker system prune -a
+
+
+  # conteiner que não estão em execução
+
+   docker system prune -a
+
+ # criar docker my-network
+
+ docker network create --driver bridge my-network
+
+
+5º criar docker com a flag da network
+
+docker run --name my-postgres --network= my-network -p 5433:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+
+6º pgadmin senha postgres
+docker run --name my-pgadmin --network=my-network -p 15432:80 -e PGADMIN_DEFAULT_EMAIL=scapolindo@gmail.com -e PGADMIN-DEFAULT_PASSWORD=postgres -d dpage/pgadmin4 
+
