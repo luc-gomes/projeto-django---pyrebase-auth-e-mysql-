@@ -4,14 +4,14 @@ from main_firebase.models import SearchAutores
 import pyrebase
 from django.db import connection
 config={
-  "apiKey": "AIzaSyAGlpseoXh8z8wVzomazZWn_24ILhymtWU",
-  "authDomain": "biblioteca-s.firebaseapp.com",
-  "databaseURL": "https://biblioteca-s-default-rtdb.firebaseio.com",
-  "projectId": "biblioteca-s",
-  "storageBucket": "biblioteca-s.appspot.com",
-  "messagingSenderId": "174158602420",
-  "appId": "1:174158602420:web:71cad95b89d480fec5f7e1",
-  "measurementId": "G-PKZJMBSS5J"
+  "apiKey": "",
+  "authDomain": "",
+  "databaseURL": "https://",
+  "projectId": "",
+  "storageBucket": "",
+  "messagingSenderId": "",
+  "appId": "",
+  "measurementId": ""
 }
 #https://www.youtube.com/watch?v=bq0AszeDZf4
 # Initialising database,auth and firebase for further use
