@@ -2,22 +2,44 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from main_firebase.models import SearchAutores
 import pyrebase
+import firebase_admin
+from firebase_admin import credentials, db
+ 
 from django.db import connection
+
+cred = credentials.Certificate('static/serviceAccountKey.json')
+
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://biblioteca-s-default-rtdb.firebaseio.com'
+})
+
+firebase_admin.get_app()
+
+ref = db.reference('Historias')
+
+print(ref.get())
+
+#--------------------------------------------------------
+
 config={
-  "apiKey": "",
-  "authDomain": "",
-  "databaseURL": "https://",
-  "projectId": "",
-  "storageBucket": "",
-  "messagingSenderId": "",
-  "appId": "",
-  "measurementId": ""
+
 }
+
+
 #https://www.youtube.com/watch?v=bq0AszeDZf4
 # Initialising database,auth and firebase for further use
-firebase=pyrebase.initialize_app(config)
+ 
+'''firebase = pyrebase.initialize_app(config, {
+    'databaseURL': 'https://biblioteca-s-default-rtdb.firebaseio.com'
+})'''
+firebase = pyrebase.initialize_app(config)
 authe = firebase.auth()
 database=firebase.database()
+ref = db.reference("/Historias")
+
+ 
+
+ 
 
 def signIn(request):
 	return render(request,"main_firebase/Login.html")

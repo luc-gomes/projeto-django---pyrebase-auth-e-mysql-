@@ -1,0 +1,22 @@
+https://developers.google.com/identity/protocols/oauth2/web-server?hl=pt-br#python
+
+Para executar os exemplos de código Python neste documento, você precisará de:
+
+Python 2.6 ou superior
+A ferramenta de gerenciamento de pacotes pip.
+Biblioteca de cliente de APIs do Google para Python:
+
+pip install --upgrade google-api-python-client
+O google-auth, google-auth-oauthlib e google-auth-httplib2 para autorização do usuário.
+
+pip install --upgrade google-auth google-auth-oauthlib google-auth-httplib2
+O framework de aplicativos da Web Flask em Python.
+
+pip install --upgrade flask
+A biblioteca HTTP requests
+
+pip install --upgrade requests
+
+--------------------------------------------------------------------------------------------------------
+
+pip install google-api-python-client
